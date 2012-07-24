@@ -2,10 +2,18 @@
 <registry>
   <record name="hexagonit.socialbutton.codes">
     <field type="plone.registry.field.Dict">
-      <title>Dodes for Social Buttons</title>
+      <title>Codes for Social Buttons</title>
       <description></description>
       <key_type type="plone.registry.field.TextLine" />
       <value_type type="plone.registry.field.Text" />
     </field>
+  </record>
+  <record name="hexagonit.socialbutton.config">
+    <field type="plone.registry.field.List">
+      <title>Configuration for Social Buttons</title>
+      <description>List of configured buttons.</description>
+      <value_type type="plone.registry.field.Dict" />
+    </field>
+    <value />
   </record>
 </registry>
