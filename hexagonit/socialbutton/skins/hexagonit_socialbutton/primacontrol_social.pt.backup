@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+<body>
+  <div metal:define-macro="social_addons"
+       tal:omit-tag="">
+    <tal:view tal:condition="isViewTemplate"
+              tal:on-error="nothing">
+      <tal:social-codes
+          tal:define="social_code context/@@social_codes_view/codes|nothing"
+          tal:condition="social_code"
+          tal:content="structure social_code"
+          />
+    </tal:view>
+  </div>
+</body>
+</html>

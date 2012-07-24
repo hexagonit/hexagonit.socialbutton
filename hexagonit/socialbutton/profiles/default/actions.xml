@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool">
+ <action-provider name="portal_actions">
+  <action title="Switch social plugins off" action_id="social_off" category="object_buttons"
+     condition_expr="object/@@social_codes_show_off_switch|nothing"
+     url_expr="string:${object_url}/social_codes_switch?target=off"
+     visible="True">
+   <permission>Modify portal content</permission>
+  </action>
+  <action title="Switch social plugins on" action_id="social_on" category="object_buttons"
+     condition_expr="object/@@social_codes_show_on_switch|nothing"
+     url_expr="string:${object_url}/social_codes_switch?target=on"
+     visible="True">
+   <permission>Modify portal content</permission>
+  </action>
+ </action-provider>
+</object>

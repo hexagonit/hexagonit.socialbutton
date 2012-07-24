@@ -1,15 +1,49 @@
 <configure
-  i18n_domain="hexagonit.socialbutton"
-  xmlns:browser="http://namespaces.zope.org/browser"
   xmlns="http://namespaces.zope.org/zope"
-  >
+  xmlns:browser="http://namespaces.zope.org/browser">
 
   <browser:page
-    class=".template.DemoView"
+    name="social-button-code-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".template.SocialButtonCodeControlPanelView"
+    permission="cmf.ManagePortal"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    />
+
+  <browser:page
+    allowed_interface="hexagonit.socialbutton.interfaces.ISocialCodesView"
+    class=".social_codes.SocialCodesView"
     for="*"
     layer=".interfaces.IHexagonitSocialbuttonLayer"
-    name="demo"
-    permission="zope2.View"
+    name="social_codes_view"
+    permission="zope.Public"
+    />
+
+  <browser:page
+    attribute="show_off_switch"
+    class=".social_codes.SocialCodesView"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="social_codes_show_off_switch"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="show_on_switch"
+    class=".social_codes.SocialCodesView"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="social_codes_show_on_switch"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="switch"
+    class=".social_codes.SocialCodesView"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="social_codes_switch"
+    permission="cmf.ModifyPortalContent"
     />
 
 </configure>

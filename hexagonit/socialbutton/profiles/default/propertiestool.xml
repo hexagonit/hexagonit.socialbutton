@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<object
+    name="portal_properties"
+    meta_type="Plone Properties Tool">
+  <object
+      name="social_properties"
+      meta_type="Social Property Sheet">
+    <property
+        name="title">primacontrol.social property sheet</property>
+
+    <property name="allowed_metatypes" type="lines">
+      <element value="AssortedEvent"/>
+      <element value="BlogEntry"/>
+      <element value="Page"/>
+    </property>
+
+    <property name="all_addons" type="lines">
+      <element value="facebook_recommend"/>
+    </property>
+
+
+    <property name="facebook_like_code"
+              type="text">&lt;fb:like href="$URL"&gt;&lt;/fb:like&gt;</property>
+
+    <property name="facebook_like_places" type="lines">
+      <element value="under"/>
+    </property>
+
+    <property name="facebook_like_hidden"
+              type="boolean">True</property>
+
+
+    <property name="facebook_recommend_code"
+              type="text">&lt;fb:like href="$URL" action="recommend"&gt;&lt;/fb:like&gt;</property>
+
+    <property name="facebook_recommend_places" type="lines">
+      <element value="under"/>
+    </property>
+
+    <property name="facebook_recommend_hidden"
+              type="boolean">False</property>
+
+
+    <property name="twitter_code"
+              type="text">&lt;a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal"&gt;Tweet&lt;/a&gt;</property>
+
+    <property name="twitter_places" type="lines">
+      <element value="under"/>
+    </property>
+
+    <property name="twitter_hidden"
+              type="boolean">True</property>
+
+  </object>
+
+</object>

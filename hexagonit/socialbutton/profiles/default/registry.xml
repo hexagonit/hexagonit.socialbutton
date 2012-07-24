@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="hexagonit.socialbutton.codes">
+    <field type="plone.registry.field.Dict">
+      <title>Dodes for Social Buttons</title>
+      <description></description>
+      <key_type type="plone.registry.field.TextLine" />
+      <value_type type="plone.registry.field.Text" />
+    </field>
+  </record>
+</registry>
