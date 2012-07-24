@@ -1,0 +1,15 @@
+<configure
+  i18n_domain="hexagonit.socialbutton"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns="http://namespaces.zope.org/zope"
+  >
+
+  <browser:page
+    class=".template.DemoView"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="demo"
+    permission="zope2.View"
+    />
+
+</configure>
