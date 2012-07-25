@@ -3,14 +3,6 @@
   xmlns:browser="http://namespaces.zope.org/browser">
 
   <browser:page
-    name="social-button-code-controlpanel"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-    class=".template.SocialButtonCodeControlPanelView"
-    permission="cmf.ManagePortal"
-    layer=".interfaces.IHexagonitSocialbuttonLayer"
-    />
-
-  <browser:page
     allowed_interface="hexagonit.socialbutton.interfaces.ISocialCodesView"
     class=".social_codes.SocialCodesView"
     for="*"

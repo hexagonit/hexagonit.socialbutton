@@ -6,7 +6,7 @@
   >
 
   <configlet
-    action_id="hexagonit_socialbutton_code_register"
+    action_id="hexagonit_socialbutton_code"
     appId="hexagonit.socialbutton"
     category="Products"
     condition_expr=""
@@ -14,6 +14,20 @@
     icon_expr="string:$portal_url/maintenance_icon.png"
     title="Social Button Code Setting"
     url_expr="string:${portal_url}/@@social-button-code-controlpanel"
+    visible="True"
+    >
+    <permission>Manage portal</permission>
+  </configlet>
+
+  <configlet
+    action_id="hexagonit_socialbutton_config"
+    appId="hexagonit.socialbutton"
+    category="Products"
+    condition_expr=""
+    i18n:attributes="title"
+    icon_expr="string:$portal_url/maintenance_icon.png"
+    title="Social Button Configuration"
+    url_expr="string:${portal_url}/@@social-button-config-controlpanel"
     visible="True"
     >
     <permission>Manage portal</permission>

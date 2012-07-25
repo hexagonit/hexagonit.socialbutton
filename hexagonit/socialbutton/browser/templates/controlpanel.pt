@@ -1,4 +1,4 @@
-<html 
+<html
   i18n:domain="hexagonit.usernotifications"
   lang="en"
   metal:use-macro="context/prefs_main_template/macros/master"
@@ -8,19 +8,7 @@
   >
 <body>
   <div metal:fill-slot="prefs_configlet_main">
-    <h1
-      class="documentFirstHeading"
-      tal:content="view/label"
-      >
-      Title
-    </h1>
-    <p
-      tal:condition="view/form/description"
-      tal:content="view/form/description"
-      >
-      Description
-    </p>
-    <div id="content-core" tal:content="structure view/contents" />
+    <div tal:replace="structure view/form" />
   </div>
 </body>
 </html>

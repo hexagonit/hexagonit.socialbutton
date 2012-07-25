@@ -2,6 +2,8 @@ from hexagonit.socialbutton.tests.base import FUNCTIONAL_TESTING
 from hexagonit.testing.browser import Browser
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import TEST_USER_PASSWORD
 from plone.testing import layered
 from zope.testing import renormalizing
 
@@ -17,23 +19,22 @@ FLAGS = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS  # | doctest.REPORT_NDIF
 
 CHECKER = renormalizing.RENormalizing([
     # Normalize the generated UUID values to always compare equal.
-    (re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'), '<UUID>'),
-])
+    (re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'), '<UUID>')])
 
 
 def setUp(self):
     layer = self.globs['layer']
+    portal = layer['portal']
+    browser = Browser(layer['app'])
     # Update global variables within the tests.
     self.globs.update({
-        'portal': layer['portal'],
-        'portal_url': layer['portal'].absolute_url(),
-        'browser': Browser(layer['app']),
+        'portal': portal,
+        'browser': browser,
+        'TEST_USER_NAME': TEST_USER_NAME,
+        'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
     })
 
-    portal = self.globs['portal']
-    browser = self.globs['browser']
-    portal_url = self.globs['portal_url']
-    browser.setBaseUrl(portal_url)
+    browser.setBaseUrl(portal.absolute_url())
 
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
@@ -70,5 +71,4 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 def test_suite():
     return unittest.TestSuite([
-        DocFileSuite('functional/browser.txt'),
-        ])
+        DocFileSuite('functional/browser.txt')])
