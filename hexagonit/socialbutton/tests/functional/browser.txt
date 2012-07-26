@@ -1,4 +1,4 @@
-Log in as the Manager::
+Log in as Manager::
 
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
@@ -21,95 +21,97 @@ Go to Social Button Configuration should show warning message::
     >>> 'Please add code for social button first.' in browser.contents
     True
 
-Go to Social Button Code Setting and add button::
+# Go to Social Button Code Setting and add button::
 
-    >>> browser.open('/@@social-button-code-controlpanel')
+#     >>> browser.open('/@@social-button-code-controlpanel')
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button1 />'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button1 />'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
-    --- 1 ---
-    <span id="crud-edit-button1-widgets-code_id" class="text-widget required textline-field">button1</span>
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
+#     --- 1 ---
+#     <span id="crud-edit-button1-widgets-code_id" class="text-widget required textline-field">button1</span>
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
-    --- 1 ---
-    <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button1 /&gt;</textarea>
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
+#     --- 1 ---
+#     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button1 /&gt;</textarea>
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
-    --- 1 ---
-    <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="" type="text">
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
+#     --- 1 ---
+#     <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="" type="text">
 
-Adding button with same ID will override the current values:
+# Adding button with same ID will override the current values:
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button1.icon'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 />'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button1.icon'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
-    --- 1 ---
-    <span id="crud-edit-button1-widgets-code_id" class="text-widget required textline-field">button1</span>
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
+#     --- 1 ---
+#     <span id="crud-edit-button1-widgets-code_id" class="text-widget required textline-field">button1</span>
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
-     --- 1 ---
-    <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 /&gt;</textarea>
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
+#      --- 1 ---
+#     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 /&gt;</textarea>
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
-    --- 1 ---
-    <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="button1.icon" type="text">
+#     >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
+#     --- 1 ---
+#     <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="button1.icon" type="text">
 
-Add another button::
+# Add another button::
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-Add one more button add delete two buttons::
+# Add one more button add delete two buttons::
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button4 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button4.icon'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button4 />'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button4.icon'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-    >>> 'button3' in browser.contents
-    True
-    >>> 'button4' in browser.contents
-    True
+#     >>> 'button3' in browser.contents
+#     True
+#     >>> 'button4' in browser.contents
+#     True
 
-    >>> browser.getControl(name="crud-edit.button3.widgets.select:list").value = True
-    >>> browser.getControl(name="crud-edit.button4.widgets.select:list").value = True
-    >>> browser.getControl(name="crud-edit.form.buttons.delete").click()
+#     >>> browser.getControl(name="crud-edit.button3.widgets.select:list").value = True
+#     >>> browser.getControl(name="crud-edit.button4.widgets.select:list").value = True
+#     >>> browser.getControl(name="crud-edit.form.buttons.delete").click()
 
-    >>> 'button3' in browser.contents
-    False
-    >>> 'button4' in browser.contents
-    False
+#     >>> 'button3' in browser.contents
+#     False
+#     >>> 'button4' in browser.contents
+#     False
 
-Add another button again::
+# Add another button again::
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
+#     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-Go to Social Button Configuration again::
+# Go to Social Button Configuration again::
 
-    >>> browser.open('/@@social-button-config-controlpanel')
-    >>> print browser.bycss('#crud-add-form-widgets-code_id')
-    --- 1 ---
-    <select id="crud-add-form-widgets-code_id" name="crud-add.form.widgets.code_id:list" class="select-widget required choice-field" size="1"><option id="crud-add-form-widgets-code_id-0" value="button3">button3</option><option id="crud-add-form-widgets-code_id-1" value="button1">button1</option></select>
+#     >>> browser.open('/@@social-button-config-controlpanel')
+#     >>> print browser.bycss('#crud-add-form-widgets-code_id')
+#     --- 1 ---
+#     <select id="crud-add-form-widgets-code_id" name="crud-add.form.widgets.code_id:list" class="select-widget required choice-field" size="1"><option id="crud-add-form-widgets-code_id-0" value="button3">button3</option><option id="crud-add-form-widgets-code_id-1" value="button1">button1</option></select>
 
-    >>> print browser.bycss('#crud-add-form-widgets-content_types')
-    --- 1 ---
-    <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option></select>
+#     >>> print browser.bycss('#crud-add-form-widgets-content_types')
+#     --- 1 ---
+#     <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option></select>
 
-Add Configuration::
+# Add Configuration::
 
-    >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button1']
-    >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
-    >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent\nplone.abovecontent'
-    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'view\n'
-    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+#     >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button1']
+#     >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
+#     >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent\nplone.abovecontent'
+#     >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'view\n'
+#     >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> browser.openBrowser()

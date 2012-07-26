@@ -11,7 +11,6 @@ from hexagonit.socialbutton.interfaces import ISocialButtonCode
 from hexagonit.socialbutton.interfaces import ISocialButtonConfig
 from plone.registry.interfaces import IRegistry
 from plone.z3cform.crud import crud
-from plone.z3cform.layout import FormWrapper
 from zope.component import getUtility
 
 
@@ -82,26 +81,6 @@ class SocialButtonCodeForm(BaseCrudForm):
         add_form.widgets['code_text'].cols = cols
 
 
-class BaseControlPanelView(grok.View):
-    grok.baseclass()
-    grok.context(IPloneSiteRoot)
-    grok.layer(IHexagonitSocialbuttonLayer)
-    grok.template('controlpanel')
-
-    def create_form(self, form_class):
-        view = FormWrapper(self.context, self.request)
-        form = form_class(self.context, self.request)
-        view.form_instance = form
-        return view()
-
-
-class SocialButtonCodeControlPanelView(BaseControlPanelView):
-    grok.name('social-button-code-controlpanel')
-
-    def form(self):
-        return self.create_form(SocialButtonCodeForm)
-
-
 class SocialButtonConfigForm(BaseCrudForm):
     """Form for updating social button configuration at ControlPanel."""
 
@@ -115,6 +94,24 @@ class SocialButtonConfigForm(BaseCrudForm):
         return IAddSocialButtonConfig
 
 
+class BaseControlPanelView(grok.View):
+    grok.baseclass()
+    grok.context(IPloneSiteRoot)
+    grok.layer(IHexagonitSocialbuttonLayer)
+    grok.template('controlpanel')
+
+    def create_form(self, form_class):
+        form = form_class(self.context, self.request)
+        return form()
+
+
+class SocialButtonCodeControlPanelView(BaseControlPanelView):
+    grok.name('social-button-code-controlpanel')
+
+    def form(self):
+        return self.create_form(SocialButtonCodeForm)
+
+
 class SocialButtonConfigControlPanelView(BaseControlPanelView):
     grok.name('social-button-config-controlpanel')
 
@@ -123,7 +120,7 @@ class SocialButtonConfigControlPanelView(BaseControlPanelView):
         items = registry['hexagonit.socialbutton.codes']
         if not items:
             message = _(u"Please add code for social button first.")
-            IStatusMessage(self.request).addStatusMessage(message, type='info')
+            IStatusMessage(self.request).addStatusMessage(message, type='warn')
             return self.template
 
     def form(self):
