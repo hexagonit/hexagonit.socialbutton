@@ -31,7 +31,8 @@ class IAddSocialButtonCode(form.Schema):
 
     code_country = schema.Choice(
         title=_(u'Country Code'),
-        source=available_country_codes,
+        # source=available_country_codes,
+        vocabulary=available_country_codes,
         required=False)
 
 
@@ -57,12 +58,13 @@ class IAddSocialButtonConfig(form.Schema):
     viewlet_manager = schema.Text(
         title=_(u'Viewlet Manager'),
         description=_(u'List names of viewlet manager line by line.'),
-        default=u'plone.belowcontent\n')
+        default=u'plone.belowcontent')
 
     view_models = schema.Text(
         title=_(u'View Models'),
         description=_(u'List names of view model line by line.'),
-        required=False)
+        required=False,
+        missing_value=u'')
 
     enabled = schema.Bool(
         title=_(u'Enabled'),

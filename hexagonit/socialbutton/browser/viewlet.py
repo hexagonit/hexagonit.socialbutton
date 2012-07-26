@@ -22,7 +22,8 @@ class SocialButtonsViewlet(grok.Viewlet):
 
     def _normalize(self, value):
         """Normalize and make it list."""
-        return [l.strip() for l in value.strip().splitlines() if l.strip()]
+        if value:
+            return [l.strip() for l in value.strip().splitlines() if l.strip()]
 
     @property
     def buttons(self):
@@ -31,11 +32,11 @@ class SocialButtonsViewlet(grok.Viewlet):
         keys = []
         types = getToolByName(self.context, 'portal_types')
         for key in items:
-            if types.getTypeInfo(self.context).id not in items[key]['content_types']:
+            if items[key]['content_types'] and types.getTypeInfo(self.context).id not in items[key]['content_types']:
                 continue
             if not items[key]['enabled']:
                 continue
-            if self.context.getLayout() not in self._normalize(items[key]['view_models']):
+            if self._normalize(items[key]['view_models']) and self.context.getLayout() not in self._normalize(items[key]['view_models']):
                 continue
             if self.manager.__name__ not in self._normalize(items[key]['viewlet_manager']):
                 continue
