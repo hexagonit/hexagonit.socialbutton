@@ -1,12 +1,11 @@
 from Products.CMFCore.utils import getToolByName
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
-from plone.app.layout.viewlets.interfaces import IBelowContent
 from plone.registry.interfaces import IRegistry
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
-from zope.component import getMultiAdapter
 
 
 grok.templatedir('viewlets')
