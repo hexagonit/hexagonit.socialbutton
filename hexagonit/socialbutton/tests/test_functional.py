@@ -41,6 +41,9 @@ def setUp(self):
 
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
+    doc1 = portal[portal.invokeFactory('Document', 'doc1', title="Document1")]
+    doc1.reindexObject()
+
     transaction.commit()
 
 

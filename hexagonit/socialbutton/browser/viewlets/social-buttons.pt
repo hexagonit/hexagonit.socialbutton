@@ -1,21 +1,9 @@
-<aside tal:condition="viewlet/items">
-  <!-- <tal:social-codes
-    tal:define="social_code context/@@social_codes_view/codes|nothing"
-    tal:condition="social_code"
-    tal:content="structure social_code"
-    />
-  <a
-    class="share-button"
-    tal:attributes="
-      href viewlet/url;
-      title viewlet/title"
-    tal:content="viewlet/title"
-    /> -->
+<aside tal:condition="viewlet/buttons">
   <ul>
     <li
       tal:repeat="item viewlet/items"
-      tal:attributes="id item/id">
-      <a tal:replace="structure item/code" />
+      tal:attributes="id item/code_id">
+      <a tal:replace="structure item/code_text" />
     </li>
   </ul>
 </aside>

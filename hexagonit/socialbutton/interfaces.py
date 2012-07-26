@@ -1,4 +1,5 @@
 from hexagonit.socialbutton import _
+from hexagonit.socialbutton.vocabulary import available_country_codes
 from hexagonit.socialbutton.vocabulary import social_button_code_ids
 from plone.directives import form
 from zope import schema
@@ -26,6 +27,11 @@ class IAddSocialButtonCode(form.Schema):
 
     code_icon = schema.TextLine(
         title=_(u'Icon'),
+        required=False)
+
+    code_country = schema.Choice(
+        title=_(u'Country Code'),
+        source=available_country_codes,
         required=False)
 
 

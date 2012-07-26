@@ -44,8 +44,10 @@ Go to Social Button Code Setting and add button::
 Adding button with same ID will override the current values:
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 />'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url={URL} icon={ICON} lang={LANG} lang_country={LANG_COUNTRY}>Button2</button2>'
     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button1.icon'
+    >>> browser.getControl(name="crud-add.form.widgets.code_country:list").value = ['EN']
+
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
@@ -54,11 +56,15 @@ Adding button with same ID will override the current values:
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
      --- 1 ---
-    <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 /&gt;</textarea>
+     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url={URL} icon={ICON} lang={LANG} lang_country={LANG_COUNTRY}&gt;Button2&lt;/button2&gt;</textarea>
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
     --- 1 ---
     <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="button1.icon" type="text">
+
+    >>> print browser.bycss('#crud-edit-button1-widgets-code_country')
+    --- 1 ---
+    <select id="crud-edit-button1-widgets-code_country" name="crud-edit.button1.widgets.code_country:list" class="select-widget choice-field" size="1"><option id="crud-edit-button1-widgets-code_country-novalue" value="--NOVALUE--">no value</option><option id="crud-edit-button1-widgets-code_country-0" value="EN" selected>EN</option></select>
 
 Add another button::
 
@@ -111,5 +117,16 @@ Add Configuration::
     >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button1']
     >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
     >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent\nplone.abovecontent'
-    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'view\n'
+    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view\n'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+Go to Document1::
+
+    >>> browser.open('/doc1')
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_EN">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_EN">Button2</button2></li>
