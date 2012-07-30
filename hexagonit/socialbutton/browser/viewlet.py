@@ -1,6 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
+from plone.app.layout.globals.interfaces import IViewView
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -17,6 +18,7 @@ class SocialButtonsViewlet(grok.Viewlet):
     grok.name('hexagonit.socialbutton.viewlet')
     grok.require('zope2.View')
     grok.template('social-buttons')
+    grok.view(IViewView)
     grok.viewletmanager(IViewletManager)
 
 

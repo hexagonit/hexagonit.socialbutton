@@ -31,7 +31,6 @@ class IAddSocialButtonCode(form.Schema):
 
     code_country = schema.Choice(
         title=_(u'Country Code'),
-        # source=available_country_codes,
         vocabulary=available_country_codes,
         required=False)
 

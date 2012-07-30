@@ -93,11 +93,16 @@ Add one more button add delete two buttons::
     >>> 'button4' in browser.contents
     False
 
-Add another button again::
+Add thow other buttons again::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3</button3>'
     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button4>Button4</button4>'
+    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button4.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
 Go to Social Button Configuration again::
@@ -105,18 +110,31 @@ Go to Social Button Configuration again::
     >>> browser.open('/@@social-button-config-controlpanel')
     >>> print browser.bycss('#crud-add-form-widgets-code_id')
     --- 1 ---
-    <select id="crud-add-form-widgets-code_id" name="crud-add.form.widgets.code_id:list" class="select-widget required choice-field" size="1"><option id="crud-add-form-widgets-code_id-0" value="button3">button3</option><option id="crud-add-form-widgets-code_id-1" value="button1">button1</option></select>
+    <select id="crud-add-form-widgets-code_id" name="crud-add.form.widgets.code_id:list" class="select-widget required choice-field" size="1"><option id="crud-add-form-widgets-code_id-0" value="button3">button3</option><option id="crud-add-form-widgets-code_id-1" value="button1">button1</option><option id="crud-add-form-widgets-code_id-2" value="button4">button4</option></select>
 
     >>> print browser.bycss('#crud-add-form-widgets-content_types')
     --- 1 ---
     <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option></select>
 
-Add Configuration::
+Add three configuration::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button1']
     >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
     >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent\nplone.abovecontent'
-    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view\n'
+    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button3']
+    >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
+    >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent'
+    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button4']
+    >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
+    >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent'
+    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-add.form.widgets.enabled:list").value = False
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
 Go to Document1::
@@ -129,3 +147,35 @@ Go to Document1::
     --- 2 ---
     <li id="button1">
     <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+    --- 1 ---
+    <li id="button3">
+    <button3>Button3</button3></li>
+
+    >>> print browser.bycss('#button4')
+
+Go to edit view should not show any buttons::
+
+    >>> browser.open('/doc1/edit')
+    >>> print browser.bycss('#button1')
+
+    >>> print browser.bycss('#button3')
+
+Log out and go to doc1 with anoymous::
+
+    >>> browser.getLink('Log out').click()
+
+    >>> browser.open('/doc1')
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+    --- 1 ---
+    <li id="button3">
+    <button3>Button3</button3></li>

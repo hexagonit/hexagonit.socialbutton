@@ -13,14 +13,12 @@ class HexagonitSocialbuttonLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
-        # Load ZCML
         import hexagonit.socialbutton
         self.loadZCML(package=hexagonit.socialbutton)
         z2.installProduct(app, 'hexagonit.socialbutton')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
-        # Install into Plone site using portal_setup
         self.applyProfile(portal, 'hexagonit.socialbutton:default')
 
     def tearDownZope(self, app):
