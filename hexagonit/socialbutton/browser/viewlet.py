@@ -1,3 +1,7 @@
+from AccessControl.SecurityManagement import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl.User import SpecialUser
 from Products.CMFCore.utils import getToolByName
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
@@ -12,6 +16,28 @@ from zope.viewlet.interfaces import IViewletManager
 grok.templatedir('viewlets')
 
 
+class anonymous_access(object):
+    """ Context anonymous to use like this:
+    with anonymous_access(request):
+        do_something()
+    """
+
+    def __init__(self, request, roles=('Anonymous', )):
+        self.request = request
+        self._roles = roles
+
+    def __enter__(self):
+        self.real_sm = getSecurityManager()
+        newSecurityManager(
+            self.request,
+            SpecialUser('Anonymous User', '', self._roles, [])
+        )
+        return self.real_sm
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        setSecurityManager(self.real_sm)
+
+
 class SocialButtonsViewlet(grok.Viewlet):
     grok.context(Interface)
     grok.layer(IHexagonitSocialbuttonLayer)
@@ -20,7 +46,6 @@ class SocialButtonsViewlet(grok.Viewlet):
     grok.template('social-buttons')
     grok.view(IViewView)
     grok.viewletmanager(IViewletManager)
-
 
     def _normalize(self, value):
         """Normalize and make it list."""
@@ -42,6 +67,9 @@ class SocialButtonsViewlet(grok.Viewlet):
                 continue
             if self.manager.__name__ not in self._normalize(items[key]['viewlet_manager']):
                 continue
+            with anonymous_access(self.request):
+                if items[key]['view_permission_only'] and not getSecurityManager().checkPermission('View', self):
+                    continue
             keys.append(key)
         return keys
 

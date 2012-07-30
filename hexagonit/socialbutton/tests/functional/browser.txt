@@ -128,6 +128,7 @@ Add three configuration::
     >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
     >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent'
     >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-add.form.widgets.view_permission_only:list").value = False
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button4']
@@ -140,6 +141,18 @@ Add three configuration::
 Go to Document1::
 
     >>> browser.open('/doc1')
+    >>> print browser.bycss('#button1')
+
+    >>> print browser.bycss('#button3')
+    --- 1 ---
+    <li id="button3">
+    <button3>Button3</button3></li>
+
+    >>> print browser.bycss('#button4')
+
+Publish::
+
+    >>> browser.getLink('Publish').click()
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">

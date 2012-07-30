@@ -65,6 +65,11 @@ class IAddSocialButtonConfig(form.Schema):
         required=False,
         missing_value=u'')
 
+    view_permission_only = schema.Bool(
+        title=_(u'View permission only'),
+        description=_(u'Display button only for views which has View permission.'),
+        default=True)
+
     enabled = schema.Bool(
         title=_(u'Enabled'),
         default=True)

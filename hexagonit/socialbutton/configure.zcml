@@ -20,7 +20,6 @@
     title="hexagonit.socialbutton"
     />
 
-  <include package=".browser" />
   <include file="skins.zcml" />
 
 </configure>
