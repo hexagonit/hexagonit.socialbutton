@@ -29,11 +29,6 @@ class IAddSocialButtonCode(form.Schema):
         title=_(u'Icon'),
         required=False)
 
-    code_country = schema.Choice(
-        title=_(u'Country Code'),
-        vocabulary=available_country_codes,
-        required=False)
-
 
 class ISocialButtonCode(IAddSocialButtonCode):
 
@@ -80,3 +75,10 @@ class ISocialButtonConfig(IAddSocialButtonConfig):
     code_id = schema.TextLine(
         title=_(u'ID'),
         readonly=True)
+
+
+class ILanguageCountry(Interface):
+    """Interface for language country mapping."""
+
+    def __call__(lang, **kwargs):
+        """Returns lang_country based on lang."""

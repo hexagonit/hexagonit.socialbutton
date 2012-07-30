@@ -5,6 +5,7 @@ from AccessControl.User import SpecialUser
 from Products.CMFCore.utils import getToolByName
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
+from hexagonit.socialbutton.interfaces import ILanguageCountry
 from plone.app.layout.globals.interfaces import IViewView
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
@@ -88,7 +89,7 @@ class SocialButtonsViewlet(grok.Viewlet):
             code_text = code_text.format(
                 URL=context_state.current_base_url(),
                 LANG=lang,
-                LANG_COUNTRY='{0}_{1}'.format(lang, items[key]['code_country']),
+                LANG_COUNTRY=ILanguageCountry(self.context)(lang),
                 ICON=items[key]['code_icon'])
             item['code_text'] = code_text
             res.append(item)

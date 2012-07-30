@@ -46,7 +46,8 @@ Adding button with same ID will override the current values:
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url={URL} icon={ICON} lang={LANG} lang_country={LANG_COUNTRY}>Button2</button2>'
     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button1.icon'
-    >>> browser.getControl(name="crud-add.form.widgets.code_country:list").value = ['US']
+
+
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_id')
@@ -60,10 +61,6 @@ Adding button with same ID will override the current values:
     >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
     --- 1 ---
     <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="button1.icon" type="text">
-
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_country')
-    --- 1 ---
-    <select id="crud-edit-button1-widgets-code_country" name="crud-edit.button1.widgets.code_country:list" class="select-widget choice-field" size="1"><option id="crud-edit-button1-widgets-code_country-novalue" value="--NOVALUE--">no value</option><option id="crud-edit-button1-widgets-code_country-0"...</option></select>
 
 Add another button::
 
