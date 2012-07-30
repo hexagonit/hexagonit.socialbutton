@@ -86,7 +86,8 @@ class SocialButtonsViewlet(grok.Viewlet):
             item = {'code_id': key}
             code_text = items[key]['code_text']
             lang = portal_state.language()
-            code_text = code_text.format(
+            text = u''.join(self._normalize(code_text))
+            code_text = text.format(
                 URL=context_state.current_base_url(),
                 LANG=lang,
                 LANG_COUNTRY=ILanguageCountry(self.context)(lang),
