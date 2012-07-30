@@ -90,7 +90,8 @@ class SocialButtonsViewlet(grok.Viewlet):
                 URL=context_state.current_base_url(),
                 LANG=lang,
                 LANG_COUNTRY=ILanguageCountry(self.context)(lang),
-                ICON=items[key]['code_icon'])
+                ICON=items[key]['code_icon'],
+                PORTAL_URL=portal_state.portal_url())
             item['code_text'] = code_text
             res.append(item)
         return res
