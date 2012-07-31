@@ -88,6 +88,8 @@ class SocialButtonsViewlet(grok.Viewlet):
             lang = portal_state.language()
             text = u''.join(self._normalize(code_text))
             code_text = text.format(
+                TITLE=self._get_method('Title'),
+                DESCRIPTION=self._get_method('Description'),
                 URL=context_state.current_base_url(),
                 LANG=lang,
                 LANG_COUNTRY=ILanguageCountry(self.context)(lang),
@@ -96,3 +98,16 @@ class SocialButtonsViewlet(grok.Viewlet):
             item['code_text'] = code_text
             res.append(item)
         return res
+
+    def _get_method(self, name):
+        """Returns method value with name or empty string.
+
+        :param name: Method name.
+        :type name: str
+
+        :rtype: str
+        """
+        met = getattr(self.context, name, '')
+        if met:
+            return met()
+        return met
