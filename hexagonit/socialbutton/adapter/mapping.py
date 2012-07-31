@@ -2,7 +2,6 @@ from five import grok
 from hexagonit.socialbutton.config import LANGUAGE_COUNTRY
 from hexagonit.socialbutton.interfaces import ILanguageCountry
 from zope.interface import Interface
-from zope.interface import implements
 
 
 class LanguageCountry(grok.Adapter):

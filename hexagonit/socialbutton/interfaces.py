@@ -1,5 +1,4 @@
 from hexagonit.socialbutton import _
-from hexagonit.socialbutton.vocabulary import available_country_codes
 from hexagonit.socialbutton.vocabulary import social_button_code_ids
 from plone.directives import form
 from zope import schema
