@@ -57,6 +57,20 @@ class BaseCrudForm(crud.CrudForm):
         del items[code_id]
         registry[self._record_name] = items
 
+    def before_update(self, item, data):
+        """Update field values.
+
+        :param item: data instance.
+        :type item: object
+
+        :param data: Field key and value.
+        :type data: dict
+        """
+        registry = getUtility(IRegistry)
+        items = registry[self._record_name]
+        items[item.code_id] = data
+        registry[self._record_name] = items
+
 
 class SocialButtonCodeForm(BaseCrudForm):
     """Form for updating social button code at ControlPanel."""

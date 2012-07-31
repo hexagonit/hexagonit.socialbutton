@@ -30,6 +30,7 @@ class IAddSocialButtonCode(form.Schema):
 
 
 class ISocialButtonCode(IAddSocialButtonCode):
+    """"""
 
     code_id = schema.TextLine(
         title=_(u'ID'),
