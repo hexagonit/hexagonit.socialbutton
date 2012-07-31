@@ -81,6 +81,19 @@ Add one more button add delete two buttons::
     >>> 'button4' in browser.contents
     True
 
+Update button3::
+
+    >>> print browser.bycss('#crud-edit-button3-widgets-code_text')
+    --- 1 ---
+    <textarea id="crud-edit-button3-widgets-code_text" name="crud-edit.button3.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button3 /&gt;</textarea>
+
+    >>> browser.getControl(name="crud-edit.button3.widgets.code_text").value = '<button3>Button3</button3>'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> print browser.bycss('#crud-edit-button3-widgets-code_text')
+    --- 1 ---
+    <textarea id="crud-edit-button3-widgets-code_text" name="crud-edit.button3.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button3&gt;Button3&lt;/button3&gt;</textarea>
+
     >>> browser.getControl(name="crud-edit.button3.widgets.select:list").value = True
     >>> browser.getControl(name="crud-edit.button4.widgets.select:list").value = True
     >>> browser.getControl(name="crud-edit.form.buttons.delete").click()
@@ -90,7 +103,7 @@ Add one more button add delete two buttons::
     >>> 'button4' in browser.contents
     False
 
-Add thow other buttons again::
+Add two other buttons again::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3</button3>'
@@ -189,3 +202,57 @@ Log out and go to doc1 with anoymous::
     --- 1 ---
     <li id="button3">
     <button3>Button3</button3></li>
+
+Log in as Manager::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Concigure to change content types::
+
+    >>> browser.open('/@@social-button-config-controlpanel')
+    >>> browser.getControl(name="crud-edit.button3.widgets.content_types:list").value = ['Folder']
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> browser.open('/doc1')
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+
+Configure to change view model::
+
+    >>> browser.open('/@@social-button-config-controlpanel')
+    >>> browser.getControl(name="crud-edit.button3.widgets.content_types:list").value = ['Document']
+    >>> browser.getControl(name="crud-edit.button3.widgets.view_models").value = 'some-view'
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+    >>> browser.open('/doc1')
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+
+Configure to uncheck view permission only::
+
+    >>> browser.open('/@@social-button-config-controlpanel')
+    >>> browser.getControl(name="crud-edit.button3.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-edit.button3.widgets.view_permission_only:list").value = True
+    >>> browser.getControl(name="crud-edit.form.buttons.edit").click()
+
+Unpublish doc1::
+
+    >>> browser.open('/doc1')
+    >>> browser.getLink('Send back').click()
+    >>> print browser.bycss('#button1')
+
+    >>> print browser.bycss('#button3')

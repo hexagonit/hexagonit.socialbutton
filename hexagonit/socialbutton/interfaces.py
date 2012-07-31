@@ -12,7 +12,7 @@ class ISocialSiteRoot(Interface):
 class ISocialCodesView(Interface):
     """SocialCodesView view"""
 
-    def codes(*args, **kwargs):
+    def codes(*args, **kwargs):  # pragma: no cover
         """Get social html codes"""
 
 
@@ -80,5 +80,5 @@ class ISocialButtonConfig(IAddSocialButtonConfig):
 class ILanguageCountry(Interface):
     """Interface for language country mapping."""
 
-    def __call__(lang, **kwargs):
+    def __call__(lang, **kwargs):  # pragma: no cover
         """Returns lang_country based on lang."""
