@@ -28,3 +28,21 @@ class TestCase(IntegrationTestCase):
         from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
         from plone.browserlayer import utils
         self.failIf(IHexagonitSocialbuttonLayer in utils.registered_layers())
+
+    def test_uninstall__registry__hexagonit_socialbutton_codes(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['hexagonit.socialbutton'])
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        with self.assertRaises(KeyError):
+            registry['hexagonit.socialbutton.codes']
+
+    def test_uninstall__registry__hexagonit_socialbutton_config(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['hexagonit.socialbutton'])
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        with self.assertRaises(KeyError):
+            registry['hexagonit.socialbutton.config']

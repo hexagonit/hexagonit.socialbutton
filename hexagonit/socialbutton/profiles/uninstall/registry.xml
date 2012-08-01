@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="hexagonit.socialbutton.codes" delete="true" />
+  <record name="hexagonit.socialbutton.config" delete="true" />
+
+</registry>

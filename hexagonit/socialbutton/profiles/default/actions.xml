@@ -19,8 +19,6 @@
       <property name="description" i18n:translate=""></property>
       <property
         name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@show-social-buttons</property>
-      <!-- <property
-        name="available_expr">python: object.restrictedTraverse("unfeedable-from-top")()</property> -->
       <property
         name="available_expr">object/@@social-buttons-hidden</property>
       <property name="permissions">

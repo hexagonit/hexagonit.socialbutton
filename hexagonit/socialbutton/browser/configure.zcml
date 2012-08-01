@@ -20,15 +20,6 @@
     permission="cmf.ModifyPortalContent"
     />
 
-  <!-- <browser:page
-    attribute="social_buttons_shown"
-    class=".miscellaneous.Miscellaneous"
-    for="*"
-    layer=".interfaces.IHexagonitSocialbuttonLayer"
-    name="social-buttons-shown"
-    permission="cmf.ModifyPortalContent"
-    /> -->
-
   <browser:page
     attribute="social_buttons_hidden"
     class=".miscellaneous.Miscellaneous"
