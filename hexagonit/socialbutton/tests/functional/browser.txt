@@ -124,7 +124,7 @@ Go to Social Button Configuration again::
 
     >>> print browser.bycss('#crud-add-form-widgets-content_types')
     --- 1 ---
-    <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option></select>
+    <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option><option id="crud-add-form-widgets-content_types-9" value="Plone Site">Plone Site</option></select>
 
 Add three configuration::
 
@@ -256,3 +256,50 @@ Unpublish doc1::
     >>> print browser.bycss('#button1')
 
     >>> print browser.bycss('#button3')
+
+Publish doc1 again and check for the actin buttons::
+
+    >>> browser.getLink('Publish').click()
+    >>> 'Hide social buttons' in browser.contents
+    True
+    >>> 'Show social buttons' in browser.contents
+    False
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+    --- 1 ---
+    <li id="button3">
+    <button3>Button3</button3></li>
+
+    >>> browser.getLink('Hide social buttons').click()
+    >>> 'Hide social buttons' in browser.contents
+    False
+    >>> 'Show social buttons' in browser.contents
+    True
+    >>> print browser.bycss('#button1')
+
+    >>> print browser.bycss('#button3')
+
+    >>> browser.getLink('Show social buttons').click()
+    >>> 'Hide social buttons' in browser.contents
+    True
+    >>> 'Show social buttons' in browser.contents
+    False
+    >>> print browser.bycss('#button1')
+    --- 1 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    --- 2 ---
+    <li id="button1">
+    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+
+    >>> print browser.bycss('#button3')
+    --- 1 ---
+    <li id="button3">
+    <button3>Button3</button3></li>

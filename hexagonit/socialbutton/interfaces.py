@@ -1,5 +1,6 @@
 from hexagonit.socialbutton import _
 from hexagonit.socialbutton.vocabulary import social_button_code_ids
+from hexagonit.socialbutton.vocabulary import social_button_content_types
 from plone.directives import form
 from zope import schema
 from zope.interface import Interface
@@ -47,7 +48,8 @@ class IAddSocialButtonConfig(form.Schema):
         title=_(u'Content Types'),
         required=False,
         value_type=schema.Choice(
-            vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'))
+            # vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'
+            source=social_button_content_types))
 
     viewlet_manager = schema.Text(
         title=_(u'Viewlet Manager'),
@@ -82,3 +84,7 @@ class ILanguageCountry(Interface):
 
     def __call__(lang, **kwargs):  # pragma: no cover
         """Returns lang_country based on lang."""
+
+
+class ISocialButtonHidden(Interface):
+    """Marker interface to mark content type to hide social buttons viewlet."""

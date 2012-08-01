@@ -20,4 +20,6 @@
     title="hexagonit.socialbutton"
     />
 
+  <include package=".browser"/>
+
 </configure>

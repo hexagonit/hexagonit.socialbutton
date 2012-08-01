@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
 from hexagonit.socialbutton.interfaces import ILanguageCountry
+from hexagonit.socialbutton.interfaces import ISocialButtonHidden
 from plone.app.layout.globals.interfaces import IViewView
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
@@ -55,9 +56,11 @@ class SocialButtonsViewlet(grok.Viewlet):
 
     @property
     def buttons(self):
+        keys = []
+        if ISocialButtonHidden.providedBy(self.context):
+            return keys
         registry = getUtility(IRegistry)
         items = registry['hexagonit.socialbutton.config']
-        keys = []
         types = getToolByName(self.context, 'portal_types')
         for key in items:
             if items[key]['content_types'] and types.getTypeInfo(self.context).id not in items[key]['content_types']:

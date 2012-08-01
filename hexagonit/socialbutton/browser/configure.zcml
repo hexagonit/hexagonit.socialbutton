@@ -1,0 +1,41 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:page
+    attribute="hide_social_buttons"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="hide-social-buttons"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
+    attribute="show_social_buttons"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="show-social-buttons"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <!-- <browser:page
+    attribute="social_buttons_shown"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="social-buttons-shown"
+    permission="cmf.ModifyPortalContent"
+    /> -->
+
+  <browser:page
+    attribute="social_buttons_hidden"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.IHexagonitSocialbuttonLayer"
+    name="social-buttons-hidden"
+    permission="cmf.ModifyPortalContent"
+    />
+
+</configure>
