@@ -3,6 +3,7 @@ from AccessControl.SecurityManagement import newSecurityManager
 from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import SpecialUser
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
 from hexagonit.socialbutton.interfaces import ILanguageCountry
@@ -108,9 +109,9 @@ class SocialButtonsViewlet(grok.Viewlet):
         :param name: Method name.
         :type name: str
 
-        :rtype: str
+        :rtype: unicode
         """
-        met = getattr(self.context, name, '')
+        met = getattr(self.context, name, u'')
         if met:
-            return met()
+            return safe_unicode(met())
         return met

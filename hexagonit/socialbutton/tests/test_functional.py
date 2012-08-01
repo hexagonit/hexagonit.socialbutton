@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from hexagonit.socialbutton.tests.base import FUNCTIONAL_TESTING
 from hexagonit.testing.browser import Browser
 from plone.app.testing import setRoles
@@ -41,7 +42,8 @@ def setUp(self):
 
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
-    doc1 = portal[portal.invokeFactory('Document', 'doc1', title="Document1")]
+    doc1 = portal[portal.invokeFactory(
+        'Document', 'doc1', title="Döcument1", description="Descriptiön of Döcument1.")]
     doc1.reindexObject()
 
     transaction.commit()

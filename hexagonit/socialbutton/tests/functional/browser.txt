@@ -106,7 +106,7 @@ Update button3::
 Add two other buttons again::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3</button3>'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3 {TITLE}: {DESCRIPTION}</button3>'
     >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
@@ -148,7 +148,7 @@ Add three configuration::
     >>> browser.getControl(name="crud-add.form.widgets.enabled:list").value = False
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
-Go to Document1::
+Go to Döcument1::
 
     >>> browser.open('/doc1')
     >>> print browser.bycss('#button1')
@@ -156,7 +156,7 @@ Go to Document1::
     >>> print browser.bycss('#button3')
     --- 1 ---
     <li id="button3">
-    <button3>Button3</button3></li>
+    <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
 
     >>> print browser.bycss('#button4')
 
@@ -174,7 +174,7 @@ Publish::
     >>> print browser.bycss('#button3')
     --- 1 ---
     <li id="button3">
-    <button3>Button3</button3></li>
+    <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
 
     >>> print browser.bycss('#button4')
 
@@ -201,7 +201,7 @@ Log out and go to doc1 with anoymous::
     >>> print browser.bycss('#button3')
     --- 1 ---
     <li id="button3">
-    <button3>Button3</button3></li>
+    <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
 
 Log in as Manager::
 
@@ -275,7 +275,7 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button3')
     --- 1 ---
     <li id="button3">
-    <button3>Button3</button3></li>
+    <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
 
     >>> browser.getLink('Hide social buttons').click()
     >>> 'Hide social buttons' in browser.contents
@@ -302,4 +302,4 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button3')
     --- 1 ---
     <li id="button3">
-    <button3>Button3</button3></li>
+    <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
