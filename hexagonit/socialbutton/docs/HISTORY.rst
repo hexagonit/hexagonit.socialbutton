@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-0.2 (2012-08-XX)
+0.2 (2012-08-02)
 ================
 
 - Uninstall profile to remove registry records added. [taito]

@@ -25,10 +25,7 @@ def social_button_code_ids(context):
 @grok.provider(IContextSourceBinder)
 def social_button_content_types(context):
     site = getSite()
-    ttool = getToolByName(site, 'portal_types', None)
-    if ttool is None:
-        return SimpleVocabulary([])
-
+    ttool = getToolByName(site, 'portal_types')
     request = aq_get(ttool, 'REQUEST', None)
     items = [
         (translate(ttool[t].Title(), context=request), t) for t in ttool.listContentTypes(

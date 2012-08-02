@@ -1,20 +1,18 @@
 from setuptools import find_packages
 from setuptools import setup
 
-
 import os
 
 
 long_description = (
     open(os.path.join("hexagonit", "socialbutton", "docs", "README.rst")).read() + "\n" +
     open(os.path.join("hexagonit", "socialbutton", "docs", "HISTORY.rst")).read() + "\n" +
-    open(os.path.join("hexagonit", "socialbutton", "docs", "CONTRIBUTORS.rst")).read()
-)
+    open(os.path.join("hexagonit", "socialbutton", "docs", "CONTRIBUTORS.rst")).read())
 
 
 setup(
     name='hexagonit.socialbutton',
-    version='0.1',
+    version='0.2',
     description="Adds social button to viewlets.",
     long_description=long_description,
     # Get more strings from
