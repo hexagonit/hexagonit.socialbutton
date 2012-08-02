@@ -5,6 +5,7 @@ from zope.interface import Interface
 
 
 class LanguageCountry(grok.Adapter):
+    """Adapter to construct locales from lang code."""
     grok.context(Interface)
     grok.provides(ILanguageCountry)
 

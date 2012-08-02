@@ -10,9 +10,9 @@ you need to be cautious about the security risk with the embedding code.
 Configuration
 -------------
 
-Once the package is installed through **Site Setup** **Add-ons**, there appears **Social Button Code Setting** and **Social Button Configuration** link at the **Add-on Configuration** section.
+Once the package is installed through **Site Setup** **Add-ons**, there appears **Social Button Code Setting** and **Social Button Configuration** links within the **Add-on Configuration** section.
 
-First go to **Social Button Code Setting** and set embedding code.
+To start the configuration, go to **Social Button Code Setting** first to set the embedding code.
 
 Social Button Code Setting
 ==========================
@@ -51,7 +51,7 @@ ICON
 PORTAL_URL
     Plone site root URL.
 
-* Since the code will be formated with ``format`` method to use those variables above, the variables need to be closed with curly bracket.
+* Since the code will be formated with python's string ``format`` method with those variables above, the variables need to be closed with curly bracket.
 
 * To escape the curly bracket, use double curly bracket like ``{{Some thing}}``.
 
@@ -66,7 +66,7 @@ Example of Code::
       <img src="{PORTAL_URL}/{ICON}" />
     </a>
 
-Once **Social Button Code Setting** is set you can go to **Social Button Configuration** for the farther configuration.
+Once **Social Button Code Setting** is set, you can go to **Social Button Configuration** for the farther configuration.
 
 Social Button Configuration
 ===========================
@@ -75,7 +75,7 @@ ID
     The ID set at **Social Button Code Setting**.
 
 Content Types
-    The content type where the viewlet will be applied.
+    The content types where the viewlet will be applied.
     If not selected, the viewlet will be applied to all the content types.
 
 Viewlet Manager
@@ -86,8 +86,8 @@ View Models
     If empty, the viewlet will be applied to all the views.
 
 View permisson only
-    If checked, the vielwet is only available at view which are available to anonymous user, like in most cases
-    for published contents.
+    If checked, the vielwet is only available at view which are available to anonymous users,
+    like in most cases for published contents.
 
 Enabled
     Uncheck this option, when disabling the code from the viewlet.
