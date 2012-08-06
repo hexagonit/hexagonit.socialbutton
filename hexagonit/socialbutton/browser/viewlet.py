@@ -56,6 +56,10 @@ class SocialButtonsViewlet(grok.Viewlet):
             return [l.strip() for l in value.strip().splitlines() if l.strip()]
 
     @property
+    def manager_name(self):
+        return self.manager.__name__.replace('.', '-')
+
+    @property
     def buttons(self):
         keys = []
         if ISocialButtonHidden.providedBy(self.context):

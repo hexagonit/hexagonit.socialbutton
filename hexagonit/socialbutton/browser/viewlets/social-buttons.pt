@@ -1,4 +1,6 @@
-<aside tal:condition="viewlet/buttons">
+<aside class="social-buttons"
+       tal:attributes="class string:social-buttons social-buttons-${viewlet/manager_name}"
+       tal:condition="viewlet/buttons">
   <ul>
     <li
       tal:repeat="item viewlet/items"
