@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+0.3 (2012-08-08)
+================
+- Added class for styling for viewlet managers. [rnd]
+
 0.2 (2012-08-02)
 ================
 
