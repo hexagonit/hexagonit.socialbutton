@@ -7,6 +7,18 @@ The viewlet can be assigned to wherever viewlet managers through the web.
 Since restrictions for the embedded code are not set,
 you need to be cautious about the security risk with the embedding code.
 
+Further Documentation URL
+-------------------------
+
+`http://packages.python.org/hexagonit.socialbutton/
+<http://packages.python.org/hexagonit.socialbutton/>`_
+
+Repository URL
+--------------
+
+`https://github.com/hexagonit/hexagonit.socialbutton/
+<https://github.com/hexagonit/hexagonit.socialbutton/>`_
+
 Configuration
 -------------
 
@@ -114,15 +126,3 @@ Example for setting those values from file system code::
             u'enabled': True,
         }
     }
-
-Further Documentation URL
--------------------------
-
-`http://packages.python.org/hexagonit.socialbutton/
-<http://packages.python.org/hexagonit.socialbutton/>`_
-
-Repository URL
---------------
-
-`https://github.com/hexagonit/hexagonit.socialbutton/
-<https://github.com/hexagonit/hexagonit.socialbutton/>`_
