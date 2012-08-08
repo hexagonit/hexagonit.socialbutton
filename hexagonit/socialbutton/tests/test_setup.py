@@ -17,6 +17,49 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.failUnless(IHexagonitSocialbuttonLayer in utils.registered_layers())
 
+    def get_record(self, name):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        return getUtility(IRegistry).records.get(name)
+
+    def test_registry__record__hexagonit_socialbutton_codes__field(self):
+        from plone.registry.field import Dict
+        record = self.get_record('hexagonit.socialbutton.codes')
+        self.assertIsInstance(record.field, Dict)
+
+    def test_registry__record__hexagonit_socialbutton_codes__field__title(self):
+        record = self.get_record('hexagonit.socialbutton.codes')
+        self.assertEqual(record.field.title, u'Codes for Social Buttons')
+
+    def test_registry__record__hexagonit_socialbutton_codes__field__key_type(self):
+        from plone.registry.field import TextLine
+        record = self.get_record('hexagonit.socialbutton.codes')
+        self.assertIsInstance(record.field.key_type, TextLine)
+
+    def test_registry__record__hexagonit_socialbutton_codes__field__value_type(self):
+        from plone.registry.field import Dict
+        record = self.get_record('hexagonit.socialbutton.codes')
+        self.assertIsInstance(record.field.value_type, Dict)
+
+    def test_registry__record__hexagonit_socialbutton_config__field(self):
+        from plone.registry.field import Dict
+        record = self.get_record('hexagonit.socialbutton.config')
+        self.assertIsInstance(record.field, Dict)
+
+    def test_registry__record__hexagonit_socialbutton_config__field__title(self):
+        record = self.get_record('hexagonit.socialbutton.config')
+        self.assertEqual(record.field.title, u'Configuration for Social Buttons')
+
+    def test_registry__record__hexagonit_socialbutton_config__field__key_type(self):
+        from plone.registry.field import TextLine
+        record = self.get_record('hexagonit.socialbutton.config')
+        self.assertIsInstance(record.field.key_type, TextLine)
+
+    def test_registry__record__hexagonit_socialbutton_config__field__value_type(self):
+        from plone.registry.field import Dict
+        record = self.get_record('hexagonit.socialbutton.config')
+        self.assertIsInstance(record.field.value_type, Dict)
+
     def test_uninstall__package(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         installer.uninstallProducts(['hexagonit.socialbutton'])

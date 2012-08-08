@@ -27,6 +27,16 @@ Icon
     The icon expression such as ``++resource++hexagonit.socialbutton/facebook.gif``
     This icon can be used in the code as ``{ICON}`` variable.
 
+Example for setting those values from file system code::
+
+    registry = getUtility(IRegistry)
+    registry['hexagonit.socialbutton.codes'] = {
+        u'facebook': {
+            u'code_text': u'<FACEBOOK />',
+            u'code_icon': u'++resource++hexagonit.socialbutton/facebook.gif',
+        }
+    }
+
 Code variables
 ==============
 
@@ -92,6 +102,18 @@ View permisson only
 Enabled
     Uncheck this option, when disabling the code from the viewlet.
 
+Example for setting those values from file system code::
+
+    registry = getUtility(IRegistry)
+    registry['hexagonit.socialbutton.config'] = {
+        u'facebook': {
+            u'content_types': Set(['Page', 'News Item']),
+            u'viewlet_manager': u'plone.abovecontent\nplone.belowcontent',
+            u'view_models': u'',
+            u'view_permission_only': True,
+            u'enabled': True,
+        }
+    }
 
 Further Documentation URL
 -------------------------

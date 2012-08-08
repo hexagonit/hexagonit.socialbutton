@@ -48,7 +48,6 @@ class IAddSocialButtonConfig(form.Schema):
         title=_(u'Content Types'),
         required=False,
         value_type=schema.Choice(
-            # vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'
             source=social_button_content_types))
 
     viewlet_manager = schema.Text(
