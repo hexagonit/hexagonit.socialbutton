@@ -1,7 +1,10 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-08-17 07:46+0000\n"
+"POT-Creation-Date: 2012-08-13 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,3 +16,70 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: hexagonit.socialbutton\n"
+
+#: ./interfaces.py:26
+msgid "Code"
+msgstr ""
+
+#: ./interfaces.py:48
+msgid "Content Types"
+msgstr ""
+
+#: ./interfaces.py:66
+msgid "Display button only for views which has View permission."
+msgstr ""
+
+#: ./interfaces.py:70
+msgid "Enabled"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Hide social buttons"
+msgstr ""
+
+#: ./interfaces.py:23
+msgid "ID"
+msgstr ""
+
+#: ./interfaces.py:29
+msgid "Icon"
+msgstr ""
+
+#: ./interfaces.py:60
+msgid "List names of view model line by line."
+msgstr ""
+
+#: ./interfaces.py:55
+msgid "List names of viewlet manager line by line."
+msgstr ""
+
+#: ./browser/template.py:136
+msgid "Please add code for social button first."
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Show social buttons"
+msgstr ""
+
+#: ./browser/template.py:77
+#: ./profiles/default/controlpanel.xml
+msgid "Social Button Code Setting"
+msgstr ""
+
+#: ./browser/template.py:101
+#: ./profiles/default/controlpanel.xml
+msgid "Social Button Configuration"
+msgstr ""
+
+#: ./interfaces.py:59
+msgid "View Models"
+msgstr ""
+
+#: ./interfaces.py:65
+msgid "View permission only"
+msgstr ""
+
+#: ./interfaces.py:54
+msgid "Viewlet Manager"
+msgstr ""
+

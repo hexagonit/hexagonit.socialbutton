@@ -14,7 +14,7 @@
       </property>
       <property name="visible">True</property>
     </object>
-    <object name="show_social_buttons" meta_type="CMF Action" i18n:domain="sll.templates">
+    <object name="show_social_buttons" meta_type="CMF Action" i18n:domain="hexagonit.socialbutton">
       <property name="title" i18n:translate="">Show social buttons</property>
       <property name="description" i18n:translate=""></property>
       <property
