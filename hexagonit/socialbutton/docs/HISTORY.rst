@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.4  (2012-08-13)
+-------------------
+- Fixing typo. Po-files initialized. Some translations. [rnd]
+- Fixing the problem with some views: guarding the viewlet [rnd]
+- google-plus image added [taito]
+
 0.3 (2012-08-08)
 ================
 
