@@ -19,3 +19,12 @@ class SocialButtonCode(Data):
 class SocialButtonConfig(Data):
 
     implements(ISocialButtonConfig)
+
+    def __init__(self, code_id, **kwargs):
+        super(self.__class__, self).__init__(code_id, **kwargs)
+        self.view_permission_only = True if self.view_permission_only == u'True' else False
+        self.enabled = True if self.enabled == u'True' else False
+        if self.content_types:
+            self.content_types = set(self.content_types.split(u','))
+        else:
+            self.content_types = set()

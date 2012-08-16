@@ -25,10 +25,6 @@ class IAddSocialButtonCode(form.Schema):
     code_text = schema.Text(
         title=_(u'Code'))
 
-    code_icon = schema.TextLine(
-        title=_(u'Icon'),
-        required=False)
-
 
 class ISocialButtonCode(IAddSocialButtonCode):
     """"""
@@ -46,20 +42,21 @@ class IAddSocialButtonConfig(form.Schema):
 
     content_types = schema.Set(
         title=_(u'Content Types'),
-        required=False,
+        default=set(u'*'),
         value_type=schema.Choice(
             source=social_button_content_types))
 
     viewlet_manager = schema.Text(
         title=_(u'Viewlet Manager'),
         description=_(u'List names of viewlet manager line by line.'),
-        default=u'plone.belowcontent')
+        default=u'plone.belowcontent',
+        missing_value=u'*')
 
     view_models = schema.Text(
         title=_(u'View Models'),
         description=_(u'List names of view model line by line.'),
-        required=False,
-        missing_value=u'')
+        default=u'*',
+        missing_value=u'*')
 
     view_permission_only = schema.Bool(
         title=_(u'View permission only'),

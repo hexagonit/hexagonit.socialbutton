@@ -20,12 +20,28 @@ grok.templatedir('templates')
 class BaseCrudForm(crud.CrudForm):
     """Base Crud Form"""
 
+    def _convert_to_unicode(self, data):
+        """Convert dictionary keys from sting to unicode and
+        all types of values into unicode."""
+        items = {}
+        for key in data:
+            value = data[key]
+            key = unicode(key)
+            if isinstance(value, bool):
+                items[key] = unicode(value)
+            elif isinstance(value, set):
+                items[key] = u','.join(value)
+            else:
+                items[key] = value
+        return items
+
     def add(self, data):
         """Add new data to registry.
 
         :param data: data.
         :type data: dict
         """
+        data = self._convert_to_unicode(data)
         registry = getUtility(IRegistry)
         items = registry[self._record_name] or {}
         items[data.pop('code_id')] = data
@@ -39,7 +55,11 @@ class BaseCrudForm(crud.CrudForm):
         if items is not None:
             for key in items:
                 code_id = str(key)
+                # if items[key].get(u'enabled'):
+                #     instance = self._class(code_id, **self._convert_from_unicode(items[key]))
+                # else:
                 instance = self._class(code_id, **items[key])
+                # instance = self._class(code_id, **self._convert_from_unicode(items[key]))
                 data.append((code_id, instance))
         return data
 
@@ -68,6 +88,7 @@ class BaseCrudForm(crud.CrudForm):
         """
         registry = getUtility(IRegistry)
         items = registry[self._record_name]
+        data = self._convert_to_unicode(data)
         items[item.code_id] = data
         registry[self._record_name] = items
 

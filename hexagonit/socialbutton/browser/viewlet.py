@@ -6,6 +6,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
+from hexagonit.socialbutton.data import SocialButtonConfig
 from hexagonit.socialbutton.interfaces import ILanguageCountry
 from hexagonit.socialbutton.interfaces import ISocialButtonHidden
 from plone.app.layout.globals.interfaces import IViewView
@@ -68,16 +69,17 @@ class SocialButtonsViewlet(grok.Viewlet):
         items = registry['hexagonit.socialbutton.config']
         types = getToolByName(self.context, 'portal_types')
         for key in items:
-            if items[key]['content_types'] and types.getTypeInfo(self.context).id not in items[key]['content_types']:
+            data = SocialButtonConfig(str(key), **items[key])
+            if data.content_types and types.getTypeInfo(self.context).id not in data.content_types:
                 continue
-            if not items[key]['enabled']:
+            if not data.enabled:
                 continue
-            if self._normalize(items[key]['view_models']) and self.context.getLayout() not in self._normalize(items[key]['view_models']):
+            if self._normalize(data.view_models) and self.context.getLayout() not in self._normalize(data.view_models):
                 continue
-            if self.manager.__name__ not in self._normalize(items[key]['viewlet_manager']):
+            if self.manager.__name__ not in self._normalize(data.viewlet_manager):
                 continue
             with anonymous_access(self.request):
-                if items[key]['view_permission_only'] and not getSecurityManager().checkPermission('View', self):
+                if data.view_permission_only and not getSecurityManager().checkPermission('View', self):
                     continue
             keys.append(key)
         return keys
@@ -101,7 +103,7 @@ class SocialButtonsViewlet(grok.Viewlet):
                 URL=context_state.current_base_url(),
                 LANG=lang,
                 LANG_COUNTRY=ILanguageCountry(self.context)(lang),
-                ICON=items[key]['code_icon'],
+                # ICON=items[key]['code_icon'],
                 PORTAL_URL=portal_state.portal_url())
             item['code_text'] = code_text
             res.append(item)

@@ -37,15 +37,10 @@ Go to Social Button Code Setting and add button::
     --- 1 ---
     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button1 /&gt;</textarea>
 
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
-    --- 1 ---
-    <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="" type="text">
-
 Adding button with same ID will override the current values:
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url={URL} icon={ICON} lang={LANG} lang_country={LANG_COUNTRY}>Button2</button2>'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button1.icon'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url={URL} lang={LANG} lang_country={LANG_COUNTRY}>Button2</button2>'
 
 
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
@@ -56,24 +51,18 @@ Adding button with same ID will override the current values:
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
      --- 1 ---
-     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url={URL} icon={ICON} lang={LANG} lang_country={LANG_COUNTRY}&gt;Button2&lt;/button2&gt;</textarea>
-
-    >>> print browser.bycss('#crud-edit-button1-widgets-code_icon')
-    --- 1 ---
-    <input id="crud-edit-button1-widgets-code_icon" name="crud-edit.button1.widgets.code_icon" class="text-widget textline-field" value="button1.icon" type="text">
+     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url={URL} lang={LANG} lang_country={LANG_COUNTRY}&gt;Button2&lt;/button2&gt;</textarea>
 
 Add another button::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
 Add one more button add delete two buttons::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button4 />'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button4.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> 'button3' in browser.contents
@@ -107,12 +96,10 @@ Add two other buttons again::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3 {TITLE}: {DESCRIPTION}</button3>'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button3.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
     >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button4>Button4</button4>'
-    >>> browser.getControl(name="crud-add.form.widgets.code_icon").value = 'button4.icon'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
 Go to Social Button Configuration again::
@@ -124,7 +111,7 @@ Go to Social Button Configuration again::
 
     >>> print browser.bycss('#crud-add-form-widgets-content_types')
     --- 1 ---
-    <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-1" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-2" value="Event">Event</option><option id="crud-add-form-widgets-content_types-3" value="File">File</option><option id="crud-add-form-widgets-content_types-4" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-5" value="Image">Image</option><option id="crud-add-form-widgets-content_types-6" value="Link">Link</option><option id="crud-add-form-widgets-content_types-7" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-8" value="Document">Page</option><option id="crud-add-form-widgets-content_types-9" value="Plone Site">Plone Site</option></select>
+    <select id="crud-add-form-widgets-content_types" name="crud-add.form.widgets.content_types:list" class="select-widget required set-field" multiple size="5"><option id="crud-add-form-widgets-content_types-0" value="*" selected>All Types</option><option id="crud-add-form-widgets-content_types-1" value="Topic">Collection</option><option id="crud-add-form-widgets-content_types-2" value="Discussion Item">Comment</option><option id="crud-add-form-widgets-content_types-3" value="Event">Event</option><option id="crud-add-form-widgets-content_types-4" value="File">File</option><option id="crud-add-form-widgets-content_types-5" value="Folder">Folder</option><option id="crud-add-form-widgets-content_types-6" value="Image">Image</option><option id="crud-add-form-widgets-content_types-7" value="Link">Link</option><option id="crud-add-form-widgets-content_types-8" value="News Item">News Item</option><option id="crud-add-form-widgets-content_types-9" value="Document">Page</option><option id="crud-add-form-widgets-content_types-10" value="Plone Site">Plone Site</option></select>
 
 Add three configuration::
 
@@ -166,10 +153,10 @@ Publish::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -193,10 +180,10 @@ Log out and go to doc1 with anoymous::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -217,10 +204,10 @@ Concigure to change content types::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
 
@@ -235,10 +222,10 @@ Configure to change view model::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
 
@@ -267,10 +254,10 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -294,10 +281,10 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" icon="button1.icon" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---

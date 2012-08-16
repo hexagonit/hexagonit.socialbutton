@@ -9,6 +9,7 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
+from hexagonit.socialbutton import _
 
 
 @grok.provider(IContextSourceBinder)
@@ -30,6 +31,7 @@ def social_button_content_types(context):
     items = [
         (translate(ttool[t].Title(), context=request), t) for t in ttool.listContentTypes(
             ) if t not in getUtility(IBadTypes)()]
+    items.append((_(u'All Types'), u'*'))
     items.sort()
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
     return SimpleVocabulary(items)
