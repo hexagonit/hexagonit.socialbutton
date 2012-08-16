@@ -70,11 +70,11 @@ class SocialButtonsViewlet(grok.Viewlet):
         types = getToolByName(self.context, 'portal_types')
         for key in items:
             data = SocialButtonConfig(str(key), **items[key])
-            if data.content_types and types.getTypeInfo(self.context).id not in data.content_types:
+            if u'*' not in data.content_types and types.getTypeInfo(self.context).id not in data.content_types:
                 continue
             if not data.enabled:
                 continue
-            if self._normalize(data.view_models) and self.context.getLayout() not in self._normalize(data.view_models):
+            if u'*' not in self._normalize(data.view_models) and self.context.getLayout() not in self._normalize(data.view_models):
                 continue
             if self.manager.__name__ not in self._normalize(data.viewlet_manager):
                 continue
