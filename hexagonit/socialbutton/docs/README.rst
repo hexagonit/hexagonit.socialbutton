@@ -35,58 +35,56 @@ ID
 Code
     The code to be embedded to viewlet.
 
-Icon
-    The icon expression such as ``++resource++hexagonit.socialbutton/facebook.gif``
-    This icon can be used in the code as ``{ICON}`` variable.
-
-Example for setting those values from file system code::
+Example to set values from file system code::
 
     registry = getUtility(IRegistry)
     registry['hexagonit.socialbutton.codes'] = {
         u'facebook': {
-            u'code_text': u'<FACEBOOK />',
-            u'code_icon': u'++resource++hexagonit.socialbutton/facebook.gif',
+            u'code_text': u'<FACEBOOK>${title} <img src="${portal_url}/++resource++hexagonit.socialbutton/facebook.gif" /></FACEBOOK>',
         }
     }
+
+Example to register through registry.xml::
+
+    <record name="hexagonit.socialbutton.codes">
+      <field type="plone.registry.field.Dict">
+        <title>Codes for Social Buttons</title>
+        <key_type type="plone.registry.field.TextLine" />
+        <value_type type="plone.registry.field.Dict">
+          <title>Value list</title>
+          <key_type type="plone.registry.field.TextLine" />
+          <value_type type="plone.registry.field.Text">
+            <title>Values</title>
+          </value_type>
+        </value_type>
+      </field>
+      <value>
+        <element key="facebook">
+          <element key="code_text">&lt;FACEBOOK&gt;${title} &lt;img src="${portal_url}/++resource++hexagonit.socialbutton/facebook.gif" /&gt;&lt;/FACEBOOK&gt;s</element>
+        </element>
+      </value>
+    </record>
 
 Code variables
 ==============
 
-TITLE
+${title}
     Title of the context.
 
-DESCRIPTION
+${description}
     Description of the context.
 
-URL
-    Current base URL for the context
+${url}
+    URL for the context
 
-LANG
+${lang}
     Language in use like en.
 
-LANG_COUNTRY
+${lang_country}
     Locales including country code such as en_US.
 
-ICON
-    Icon expression from field **Icon**.
-
-PORTAL_URL
+${portal_url}
     Plone site root URL.
-
-* Since the code will be formated with python's string ``format`` method with those variables above, the variables need to be closed with curly bracket.
-
-* To escape the curly bracket, use double curly bracket like ``{{Some thing}}``.
-
-Example of Code::
-
-    <script type="text/javascript">
-        (function () {{if
-        ...
-        }})();
-    </script>
-    <a href="facebook_url" link="{URL}" language="{LANG}">
-      <img src="{PORTAL_URL}/{ICON}" />
-    </a>
 
 Once **Social Button Code Setting** is set, you can go to **Social Button Configuration** for the farther configuration.
 
@@ -98,31 +96,56 @@ ID
 
 Content Types
     The content types where the viewlet will be applied.
-    If not selected, the viewlet will be applied to all the content types.
 
 Viewlet Manager
     Add the names of viewlet managers line by line where the viewlet will be applied.
 
 View Models
     Add the names of views where the viewlet will be applied.
-    If empty, the viewlet will be applied to all the views.
+    For all the views, use ``*``.
 
-View permisson only
+View permission only
     If checked, the vielwet is only available at view which are available to anonymous users,
     like in most cases for published contents.
 
 Enabled
     Uncheck this option, when disabling the code from the viewlet.
 
-Example for setting those values from file system code::
+Example to set values from file system code::
 
     registry = getUtility(IRegistry)
     registry['hexagonit.socialbutton.config'] = {
         u'facebook': {
-            u'content_types': Set(['Page', 'News Item']),
+            u'content_types': u'Page,News Item',
             u'viewlet_manager': u'plone.abovecontent\nplone.belowcontent',
-            u'view_models': u'',
-            u'view_permission_only': True,
-            u'enabled': True,
+            u'view_models': u'*',
+            u'view_permission_only': 'True',
+            u'enabled': 'True',
         }
     }
+
+Example to register through registry.xml::
+
+    <record name="hexagonit.socialbutton.config">
+      <field type="plone.registry.field.Dict">
+        <title>Configuration for Social Buttons</title>
+        <key_type type="plone.registry.field.TextLine" />
+        <value_type type="plone.registry.field.Dict">
+          <title>Value list</title>
+          <key_type type="plone.registry.field.TextLine" />
+          <value_type type="plone.registry.field.Text">
+            <title>Values</title>
+          </value_type>
+        </value_type>
+      </field>
+      <value>
+        <element key="facebook">
+          <element key="content_types">Page,News Item</element>
+          <element key="viewlet_manager">plone.abovecontent
+  plone.belowcontent</element>
+          <element key="view_models">*</element>
+          <element key="view_permission_only">True</element>
+          <element key="enabled">True</element>
+        </element>
+      </value>
+    </record>

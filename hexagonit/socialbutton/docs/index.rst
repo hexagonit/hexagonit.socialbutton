@@ -15,11 +15,14 @@ Country mapping against language resides in hexagonit.socialbutton.config module
         'sv': 'SE',
     }
 
-The locales are constructed with ``hexagonit.socialbutton.adapter.mapping.LanguageCountry`` adapter.
+The locales are constructed with ``hexagonit.socialbutton.adapter.dollar.LangCountry`` adapter.
 
 .. code-block:: python
 
-    ILanguageCountry(self.context)(lang)
+    from plone.stringinterp.interfaces import IStringSubstitution
+    from zope.component import getAdapter
+
+    getAdapter(self.context, IStringSubstitution, name="lang_country")()
 
 
 Contents:

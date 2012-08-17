@@ -10,7 +10,6 @@ PROFILE_ID = 'profile-hexagonit.socialbutton:default'
 def upgrade_1_to_2(context, logger=None):
     """Reimport registry.xml"""
     if logger is None:
-        # Called as upgrade step: define our own logger.
         logger = logging.getLogger(__name__)
 
     registry = getUtility(IRegistry)

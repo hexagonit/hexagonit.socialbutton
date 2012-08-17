@@ -1,8 +1,17 @@
 Changelog
 ---------
 
-0.4  (2012-08-13)
--------------------
+0.5 (2012-08-17)
+================
+
+- Updated registry.xml to enable import and export. [taito]
+- Switched to use plone.stringinterp instead of format method
+  for string interpolation in embedding codes.
+  [taito]
+
+0.4 (2012-08-13)
+================
+
 - Fixing typo. Po-files initialized. Some translations. [rnd]
 - Fixing the problem with some views: guarding the viewlet [rnd]
 - google-plus image added [taito]
