@@ -15,29 +15,29 @@ def upgrade_1_to_2(context, logger=None):
 
     registry = getUtility(IRegistry)
     codes = registry['hexagonit.socialbutton.codes']
-
+    from hexagonit.socialbutton.utility import IConvertToUnicode
+    convert = getUtility(IConvertToUnicode)
     for key in codes:
         logger.info('Removing code_icon from {0}'.format(key))
         del codes[key][u'code_icon']
         logger.info('Removed code_icon from {0}'.format(key))
+        codes[key] = convert(codes[key])
         logger.info('Updating code_text of {0}'.format(key))
         text = codes[key][u'code_text'].format(TITLE='${title}', DESCRIPTION='${description}', URL='${url}',
             LANG='${lang}', LANG_COUNTRY='${lang_country}', PORTAL_URL='${portal_url}')
-        codes[key]['code_text'] = text
+        codes[key][u'code_text'] = text
         logger.info('Updated code_text of {0}'.format(key))
 
     config = registry['hexagonit.socialbutton.config']
-    from hexagonit.socialbutton.utility import IConvertToUnicode
     for key in config:
-        if config[key][u'view_models'] is None:
+        if not config[key][u'view_models']:
             config[key][u'view_models'] = u'*'
         if not config[key][u'content_types']:
             config[key][u'content_types'] = u'*'
-        config[key] = getUtility(IConvertToUnicode)(config[key])
+        config[key] = convert(config[key])
 
     setup = getToolByName(context, 'portal_setup')
     logger.info('Reimporting registry.xml.')
-    # setup.runImportStepFromProfile('profile-hexagonit.socialbutton:uninstall', 'plone.app.registry', run_dependencies=False, purge_old=False)
     setup.runImportStepFromProfile(PROFILE_ID, 'plone.app.registry', run_dependencies=False, purge_old=False)
     logger.info('Reimported registry.xml.')
 
