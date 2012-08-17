@@ -1,0 +1,16 @@
+<configure
+  i18n_domain="hexagonit.socialbutton"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns="http://namespaces.zope.org/zope">
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="2"
+    handler="hexagonit.socialbutton.upgrades.upgrade_1_to_2"
+    profile="hexagonit.socialbutton:default"
+    sortkey="1"
+    source="1"
+    title="Reimport registry.xml"
+    />
+
+</configure>

@@ -19,6 +19,8 @@ class HexagonitSocialbuttonLayer(PloneSandboxLayer):
 
         import hexagonit.socialbutton
         self.loadZCML(package=hexagonit.socialbutton)
+        import hexagonit.socialbutton.tests.old
+        self.loadZCML(package=hexagonit.socialbutton.tests.old)
         z2.installProduct(app, 'hexagonit.socialbutton')
 
     def setUpPloneSite(self, portal):

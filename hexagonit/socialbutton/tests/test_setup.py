@@ -17,6 +17,13 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.failUnless(IHexagonitSocialbuttonLayer in utils.registered_layers())
 
+    def test_metadata__version(self):
+        setup = getToolByName(self.portal, 'portal_setup')
+        self.assertEqual(
+            setup.getVersionForProfile('profile-hexagonit.socialbutton:default'),
+            u'2'
+        )
+
     def get_record(self, name):
         from zope.component import getUtility
         from plone.registry.interfaces import IRegistry

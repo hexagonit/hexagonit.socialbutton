@@ -1,0 +1,15 @@
+<configure
+  i18n_domain="hexagonit.socialbutton"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns="http://namespaces.zope.org/zope">
+
+  <genericsetup:registerProfile
+    description="Installs the hexagonit.socialbutton old profile."
+    directory="profiles/old"
+    name="old"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    title="Install old hexagonit.socialbutton profile"
+    />
+
+</configure>
