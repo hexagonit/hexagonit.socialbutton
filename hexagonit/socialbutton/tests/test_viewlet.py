@@ -15,7 +15,3 @@ class TestSocialButtonsViewlet(IntegrationTestCase):
     def test__normalize__value_None(self):
         viewlet = self.createViewlet()
         self.assertIsNone(viewlet._normalize(None))
-
-    def test__get_method__name_not_exists(self):
-        viewlet = self.createViewlet()
-        self.assertEqual(viewlet._get_method('NAME'), '')

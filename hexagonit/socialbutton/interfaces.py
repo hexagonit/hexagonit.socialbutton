@@ -49,14 +49,12 @@ class IAddSocialButtonConfig(form.Schema):
     viewlet_manager = schema.Text(
         title=_(u'Viewlet Manager'),
         description=_(u'List names of viewlet manager line by line.'),
-        default=u'plone.belowcontent',
-        missing_value=u'*')
+        default=u'plone.belowcontent')
 
     view_models = schema.Text(
         title=_(u'View Models'),
-        description=_(u'List names of view model line by line.'),
-        default=u'*',
-        missing_value=u'*')
+        description=_(u"List names of view model line by line. For all the views, use '*'"),
+        default=u'*')
 
     view_permission_only = schema.Bool(
         title=_(u'View permission only'),

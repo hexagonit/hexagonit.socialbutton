@@ -3,15 +3,13 @@ from AccessControl.SecurityManagement import newSecurityManager
 from AccessControl.SecurityManagement import setSecurityManager
 from AccessControl.User import SpecialUser
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 from five import grok
 from hexagonit.socialbutton.browser.interfaces import IHexagonitSocialbuttonLayer
 from hexagonit.socialbutton.data import SocialButtonConfig
-from hexagonit.socialbutton.interfaces import ILanguageCountry
 from hexagonit.socialbutton.interfaces import ISocialButtonHidden
 from plone.app.layout.globals.interfaces import IViewView
 from plone.registry.interfaces import IRegistry
-from zope.component import getMultiAdapter
+from plone.stringinterp.interfaces import IStringInterpolator
 from zope.component import getUtility
 from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
@@ -87,37 +85,11 @@ class SocialButtonsViewlet(grok.Viewlet):
     def items(self):
         registry = getUtility(IRegistry)
         items = registry['hexagonit.socialbutton.codes']
-        context_state = getMultiAdapter(
-            (self.context, self.request), name='plone_context_state')
-        portal_state = getMultiAdapter(
-            (self.context, self.request), name='plone_portal_state')
         res = []
         for key in self.buttons:
             item = {'code_id': key}
             code_text = items[key]['code_text']
-            lang = portal_state.language()
             text = u''.join(self._normalize(code_text))
-            code_text = text.format(
-                TITLE=self._get_method('Title'),
-                DESCRIPTION=self._get_method('Description'),
-                URL=context_state.current_base_url(),
-                LANG=lang,
-                LANG_COUNTRY=ILanguageCountry(self.context)(lang),
-                # ICON=items[key]['code_icon'],
-                PORTAL_URL=portal_state.portal_url())
-            item['code_text'] = code_text
+            item['code_text'] = IStringInterpolator(self.context)(text)
             res.append(item)
         return res
-
-    def _get_method(self, name):
-        """Returns method value with name or empty string.
-
-        :param name: Method name.
-        :type name: str
-
-        :rtype: unicode
-        """
-        met = getattr(self.context, name, u'')
-        if met:
-            return safe_unicode(met())
-        return met

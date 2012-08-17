@@ -1,6 +1,7 @@
 from Acquisition import aq_get
 from Products.CMFCore.utils import getToolByName
 from five import grok
+from hexagonit.socialbutton import _
 from hexagonit.socialbutton.utility import IBadTypes
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
@@ -9,7 +10,6 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
-from hexagonit.socialbutton import _
 
 
 @grok.provider(IContextSourceBinder)

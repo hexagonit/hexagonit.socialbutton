@@ -40,6 +40,7 @@ setup(
         'hexagonit.testing',
         'plone.browserlayer',
         'plone.directives.form',
+        'plone.stringinterp',
         'setuptools',
         'zope.i18nmessageid'],
     entry_points="""

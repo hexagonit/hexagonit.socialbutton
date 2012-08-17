@@ -40,7 +40,7 @@ Go to Social Button Code Setting and add button::
 Adding button with same ID will override the current values:
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url={URL} lang={LANG} lang_country={LANG_COUNTRY}>Button2</button2>'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url=${url} lang=${lang} lang_country=${lang_country}>Button2</button2>'
 
 
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
@@ -51,7 +51,7 @@ Adding button with same ID will override the current values:
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
      --- 1 ---
-     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url={URL} lang={LANG} lang_country={LANG_COUNTRY}&gt;Button2&lt;/button2&gt;</textarea>
+     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url=${url} lang=${lang} lang_country=${lang_country}&gt;Button2&lt;/button2&gt;</textarea>
 
 Add another button::
 
@@ -95,7 +95,7 @@ Update button3::
 Add two other buttons again::
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button3'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3 {TITLE}: {DESCRIPTION}</button3>'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button3>Button3 ${title}: ${description}</button3>'
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button4'
