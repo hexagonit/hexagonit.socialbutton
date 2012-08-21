@@ -1,8 +1,15 @@
 Changelog
 ---------
 
-0.6  (2012-08-21)
-=================
+0.7 (2012-08-21)
+================
+
+- Dependency to plone.stringinterp>=1.0.7 added to make string interpolation available
+  in the context of Plone Site root.
+  [taito]
+
+0.6 (2012-08-21)
+================
 
 - Added guards for cases of None to the upgrade step [rnd]
 

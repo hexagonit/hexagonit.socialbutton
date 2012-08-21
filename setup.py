@@ -36,11 +36,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Plone>=4.1',
         'five.grok',
         'hexagonit.testing',
         'plone.browserlayer',
         'plone.directives.form',
-        'plone.stringinterp',
+        'plone.stringinterp>=1.0.7',
         'setuptools',
         'zope.i18nmessageid'],
     entry_points="""

@@ -1,4 +1,3 @@
-from Products.CMFCore.interfaces import IContentish
 from five import grok
 from hexagonit.socialbutton import _
 from hexagonit.socialbutton.config import LANGUAGE_COUNTRY
@@ -7,11 +6,12 @@ from plone.stringinterp.interfaces import IStringSubstitution
 from zope.component import getAdapter
 from zope.component import getMultiAdapter
 from zope.i18nmessageid import MessageFactory
+from zope.interface import Interface
 
 
 class AllContent(BaseSubstitution, grok.Adapter):
     grok.baseclass()
-    grok.context(IContentish)
+    grok.context(Interface)
     grok.provides(IStringSubstitution)
 
     catagory = MessageFactory('plone')(u'All Content')
