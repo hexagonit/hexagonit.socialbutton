@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.6  (2012-08-21)
+=================
+
+- Added guards for cases of None to the upgrade step [rnd]
+
 0.5 (2012-08-17)
 ================
 

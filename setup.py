@@ -12,7 +12,7 @@ long_description = (
 
 setup(
     name='hexagonit.socialbutton',
-    version='0.5',
+    version='0.6',
     description="Adds social button to viewlets.",
     long_description=long_description,
     # Get more strings from
