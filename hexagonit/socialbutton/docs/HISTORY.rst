@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-0.7 (2012-08-21)
+0.7 (2012-08-22)
 ================
 
 - Dependency to plone.stringinterp>=1.0.7 added to make string interpolation available
