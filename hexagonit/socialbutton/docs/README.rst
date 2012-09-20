@@ -105,7 +105,7 @@ View Models
     For all the views, use ``*``.
 
 View permission only
-    If checked, the vielwet is only available at view which are available to anonymous users,
+    If checked, the viewlet is only available at view which are available to anonymous users,
     like in most cases for published contents.
 
 Enabled

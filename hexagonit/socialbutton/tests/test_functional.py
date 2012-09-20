@@ -29,10 +29,10 @@ def setUp(self):
     browser = Browser(layer['app'])
     # Update global variables within the tests.
     self.globs.update({
-        'portal': portal,
-        'browser': browser,
         'TEST_USER_NAME': TEST_USER_NAME,
         'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
+        'browser': browser,
+        'portal': portal,
     })
 
     browser.setBaseUrl(portal.absolute_url())

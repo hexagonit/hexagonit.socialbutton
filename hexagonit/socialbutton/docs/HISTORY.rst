@@ -1,5 +1,12 @@
-Changelog
----------
+Change log
+----------
+
+0.8 (2012-09-20)
+================
+
+- Added dependency to Plone>=4.2.1 and removed dependency to plone.stringinterp>=1.0.7 since Plone-4.2.1 includes it.
+  [taito]
+
 
 0.7 (2012-08-22)
 ================

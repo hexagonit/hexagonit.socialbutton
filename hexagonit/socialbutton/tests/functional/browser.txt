@@ -40,7 +40,7 @@ Go to Social Button Code Setting and add button::
 Adding button with same ID will override the current values:
 
     >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button1'
-    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 url=${url} lang=${lang} lang_country=${lang_country}>Button2</button2>'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button2 portal_url=${portal_url} url=${url} lang=${lang} lang_country=${lang_country}>Button2</button2>'
 
 
     >>> browser.getControl(name="crud-add.form.buttons.add").click()
@@ -51,7 +51,7 @@ Adding button with same ID will override the current values:
 
     >>> print browser.bycss('#crud-edit-button1-widgets-code_text')
      --- 1 ---
-     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 url=${url} lang=${lang} lang_country=${lang_country}&gt;Button2&lt;/button2&gt;</textarea>
+     <textarea id="crud-edit-button1-widgets-code_text" name="crud-edit.button1.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button2 portal_url=${portal_url} url=${url} lang=${lang} lang_country=${lang_country}&gt;Button2&lt;/button2&gt;</textarea>
 
 Add another button::
 
@@ -153,10 +153,10 @@ Publish::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -180,10 +180,10 @@ Log out and go to doc1 with anoymous::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -204,10 +204,10 @@ Concigure to change content types::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
 
@@ -222,10 +222,10 @@ Configure to change view model::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
 
@@ -254,10 +254,10 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---
@@ -281,10 +281,10 @@ Publish doc1 again and check for the actin buttons::
     >>> print browser.bycss('#button1')
     --- 1 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
     --- 2 ---
     <li id="button1">
-    <button2 url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
+    <button2 portal_url="http://nohost/plone" url="http://nohost/plone/doc1" lang="en" lang_country="en_US">Button2</button2></li>
 
     >>> print browser.bycss('#button3')
     --- 1 ---

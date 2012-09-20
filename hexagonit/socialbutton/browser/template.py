@@ -38,11 +38,11 @@ class BaseCrudForm(crud.CrudForm):
         registry = getUtility(IRegistry)
         items = registry[self._record_name]
         data = []
-        if items is not None:
-            for key in items:
-                code_id = str(key)
-                instance = self._class(code_id, **items[key])
-                data.append((code_id, instance))
+        # if items is not None:
+        for key in items:
+            code_id = str(key)
+            instance = self._class(code_id, **items[key])
+            data.append((code_id, instance))
         return data
 
     def remove(self, (code_id, item)):
