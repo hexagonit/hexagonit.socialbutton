@@ -89,7 +89,6 @@ class SocialButtonsViewlet(grok.Viewlet):
         for key in self.buttons:
             item = {'code_id': key}
             code_text = items[key]['code_text']
-            text = u''.join(self._normalize(code_text))
-            item['code_text'] = IStringInterpolator(self.context)(text)
+            item['code_text'] = IStringInterpolator(self.context)(code_text)
             res.append(item)
         return res
