@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.7.1  (2012-09-27)
+===================
+
+- Fixed problem with js - removed _normalize for js [rnd]
+
 0.7 (2012-08-22)
 ================
 
