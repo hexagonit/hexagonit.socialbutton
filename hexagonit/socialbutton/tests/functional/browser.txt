@@ -290,3 +290,41 @@ Publish doc1 again and check for the actin buttons::
     --- 1 ---
     <li id="button3">
     <button3>Button3 D&#246;cument1: Descripti&#246;n of D&#246;cument1.</button3></li>
+
+
+Go to Social Button Code Setting and add button with multiple lines and indents::
+
+    >>> browser.open('/@@social-button-code-controlpanel')
+
+    >>> browser.getControl(name="crud-add.form.widgets.code_id").value = 'button5'
+    >>> browser.getControl(name="crud-add.form.widgets.code_text").value = '<button5>\n  Button5\n  is\n  multiline.\n</button5>'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+    >>> print browser.bycss('#crud-edit-button5-widgets-code_text')
+    --- 1 ---
+    <textarea id="crud-edit-button5-widgets-code_text" name="crud-edit.button5.widgets.code_text" class="textarea-widget required text-field" cols="70">&lt;button5&gt;
+    Button5
+    is
+    multiline.
+    &lt;/button5&gt;</textarea>
+
+Go to Social Button Configuration and configure button5::
+
+    >>> browser.open('/@@social-button-config-controlpanel')
+    >>> browser.getControl(name="crud-add.form.widgets.code_id:list").value = ['button5']
+    >>> browser.getControl(name="crud-add.form.widgets.content_types:list").value = ['Document']
+    >>> browser.getControl(name="crud-add.form.widgets.viewlet_manager").value = 'plone.belowcontent'
+    >>> browser.getControl(name="crud-add.form.widgets.view_models").value = 'document_view'
+    >>> browser.getControl(name="crud-add.form.buttons.add").click()
+
+Go to Döcument1. There should be multilne button5::
+
+    >>> browser.open('/doc1')
+    >>> print browser.bycss('#button5')
+    --- 1 ---
+    <li id="button5">
+    <button5>
+    Button5
+    is
+    multiline.
+    </button5></li>

@@ -1,12 +1,21 @@
 Change log
 ----------
 
+0.8.1 (2012-09-28)
+==================
+
+- Fixed bug for multiple line code. [rnd, taito]
+
 0.8 (2012-09-20)
 ================
 
 - Added dependency to Plone>=4.2.1 and removed dependency to plone.stringinterp>=1.0.7 since Plone-4.2.1 includes it.
   [taito]
 
+0.7.1  (2012-09-27)
+===================
+
+- Fixed problem with js - removed _normalize for js [rnd]
 
 0.7 (2012-08-22)
 ================
