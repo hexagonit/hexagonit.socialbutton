@@ -28,9 +28,8 @@ def social_button_content_types(context):
     site = getSite()
     ttool = getToolByName(site, 'portal_types')
     request = aq_get(ttool, 'REQUEST', None)
-    items = [
-        (translate(ttool[t].Title(), context=request), t) for t in ttool.listContentTypes(
-            ) if t not in getUtility(IBadTypes)()]
+    items = [(
+        translate(ttool[t].Title(), context=request), t) for t in ttool.listContentTypes() if t not in getUtility(IBadTypes)()]
     items.append((_(u'All Types'), u'*'))
     items.sort()
     items = [SimpleTerm(i[1], i[1], i[0]) for i in items]

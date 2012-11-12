@@ -23,7 +23,8 @@ def upgrade_1_to_2(context, logger=None):
             logger.info('Removed code_icon from {0}'.format(key))
             codes[key] = convert(codes[key])
             logger.info('Updating code_text of {0}'.format(key))
-            text = codes[key][u'code_text'].format(TITLE='${title}', DESCRIPTION='${description}', URL='${url}',
+            text = codes[key][u'code_text'].format(
+                TITLE='${title}', DESCRIPTION='${description}', URL='${url}',
                 LANG='${lang}', LANG_COUNTRY='${lang_country}', PORTAL_URL='${portal_url}')
             codes[key][u'code_text'] = text
             logger.info('Updated code_text of {0}'.format(key))

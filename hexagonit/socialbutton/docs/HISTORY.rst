@@ -1,6 +1,11 @@
 Change log
 ----------
 
+0.9 (2012-11-XX)
+================
+
+- Added permission: **hexagonit.socialbutton: Manage Social Button** to manage social button. [taito]
+
 0.8.1 (2012-09-28)
 ==================
 

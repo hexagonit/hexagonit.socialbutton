@@ -31,4 +31,9 @@
   <include package=".browser"/>
   <include file="upgrades.zcml"/>
 
+  <pemission
+    id="hexagonit.socialbutton.ManageSocialButton"
+    title="hexagonit.socialbutton: Manage Social Button"
+    />
+
 </configure>

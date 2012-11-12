@@ -55,9 +55,7 @@ class TestCase(IntegrationTestCase):
 
         from hexagonit.socialbutton.upgrades import upgrade_1_to_2
         upgrade_1_to_2(self.portal)
-        self.assertEqual(
-            registry['hexagonit.socialbutton.codes'],
-            {
+        self.assertEqual(registry['hexagonit.socialbutton.codes'], {
             u'aaa': {
                 u'code_id': u'aaa',
                 u'code_text': u'${title}, ${description}, ${url}, ${lang}, ${lang_country}, ${portal_url}, {script}',
@@ -67,9 +65,7 @@ class TestCase(IntegrationTestCase):
                 u'code_text': u'<BBB />',
             },
         })
-        self.assertEqual(
-            registry['hexagonit.socialbutton.config'],
-            {
+        self.assertEqual(registry['hexagonit.socialbutton.config'], {
             u'aaa': {
                 u'code_id': u'aaa',
                 u'content_types': u'*',
