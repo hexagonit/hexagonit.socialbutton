@@ -3,6 +3,7 @@ from hexagonit.socialbutton import _
 from hexagonit.socialbutton.config import LANGUAGE_COUNTRY
 from plone.stringinterp.adapters import BaseSubstitution
 from plone.stringinterp.interfaces import IStringSubstitution
+from plone.uuid.interfaces import IUUID
 from zope.component import getAdapter
 from zope.component import getMultiAdapter
 from zope.i18nmessageid import MessageFactory
@@ -44,3 +45,11 @@ class PortalURL(AllContent):
         portal_state = getMultiAdapter(
             (self.context, self.context.REQUEST), name='plone_portal_state')
         return portal_state.portal_url()
+
+
+class ContextUID(AllContent):
+    grok.name('uid')
+    description = _(u'UID of context.')
+
+    def safe_call(self):
+        return str(IUUID(self.context))

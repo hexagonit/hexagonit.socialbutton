@@ -75,7 +75,10 @@ ${description}
     Description of the context.
 
 ${url}
-    URL for the context
+    URL for the context.
+
+${uid}
+    UID of the context.
 
 ${lang}
     Language in use like en.
