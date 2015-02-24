@@ -52,5 +52,4 @@ class ContextUID(AllContent):
     description = _(u'UID of context.')
 
     def safe_call(self):
-        import pdb; pdb.set_trace()
         return str(IUUID(self.context, None))
